@@ -9,15 +9,18 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    public float jumpForce;
+    private Rigidbody rb;
+
+    [SerializeField] private float speed = 1;
+    [SerializeField] private float jumpForce;
+    private Player player;
     private float moveInputHor;
     private float moveInputVer;
-    private Rigidbody rb;
     private float horizontalMove;
 
     private void Start()
     {
+        player = GetComponent<Player>();
         rb = this.gameObject.GetComponent<Rigidbody>();
     }
 
@@ -27,5 +30,13 @@ public class PlayerMovement : MonoBehaviour
         moveInputVer = Input.GetAxis("Vertical");
         rb.velocity = new Vector3(moveInputHor * speed, rb.velocity.y, moveInputVer * speed);
         //horizontalMove = moveInput * speed;
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.GetComponent<Enemy>())
+        {
+            player.UpdateHealth(-20);
+        }
     }
 }
