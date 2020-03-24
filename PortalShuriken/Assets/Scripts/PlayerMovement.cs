@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using Object = System.Object;
 
 // This script moves the character controller forward
 // and sideways based on the arrow keys.
@@ -9,32 +11,56 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody rb;
-
-    [SerializeField] private float speed = 1;
-    [SerializeField] private float jumpForce;
+    private CharacterController controller;
     private Player player;
-    private float moveInputHor;
-    private float moveInputVer;
-    private float horizontalMove;
+
+    public Transform groundCheck;
+    public LayerMask groundMask;
+
+    [SerializeField] private float speed = 12f;
+    [SerializeField] private float gravity = -20f;
+    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float groundDistance = 0.6f;
+    private bool isGrounded;
+
+    private Vector3 velocity;
 
     private void Start()
     {
-        player = GetComponent<Player>();
-        rb = this.gameObject.GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
+        player = GetComponent<Player>(); 
     }
 
     private void Update()
     {
-        moveInputHor = Input.GetAxis("Horizontal");
-        moveInputVer = Input.GetAxis("Vertical");
-        rb.velocity = new Vector3(moveInputHor * speed, rb.velocity.y, moveInputVer * speed);
-        //horizontalMove = moveInput * speed;
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = 0f;
+        }
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        if (!isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+        controller.Move(velocity * Time.deltaTime);
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        controller.Move(move * speed * Time.deltaTime);
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (col.gameObject.GetComponent<Enemy>())
+        Debug.Log(hit);
+
+        if (hit.gameObject.GetComponent<Enemy>())
         {
             player.UpdateHealth(-20);
         }
