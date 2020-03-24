@@ -12,7 +12,7 @@ using Object = System.Object;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    private Player player;
+    
 
     public Transform groundCheck;
     public LayerMask groundMask;
@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        player = GetComponent<Player>(); 
     }
 
     private void Update()
@@ -54,15 +53,5 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
-    }
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log(hit);
-
-        if (hit.gameObject.GetComponent<Enemy>())
-        {
-            player.UpdateHealth(-20);
-        }
     }
 }
