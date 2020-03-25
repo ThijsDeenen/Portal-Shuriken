@@ -13,7 +13,7 @@ public class Kunai : MonoBehaviour
             Physics.IgnoreCollision(col.gameObject.GetComponent<CharacterController>(), GetComponent<CapsuleCollider>());
         }
 
-        if (col.gameObject.GetComponent<Enemy>())
+        if (col.gameObject.GetComponent<Enemy>() || col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
         {
             player.transform.position = transform.position;
             Destroy(transform.gameObject);
