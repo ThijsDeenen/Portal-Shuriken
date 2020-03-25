@@ -5,18 +5,26 @@ using UnityEngine;
 public class Kunai : MonoBehaviour
 {
     private GameObject player;
+    private bool broken = false;
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.GetComponent<Player>())
+        if (!broken)
         {
-            Physics.IgnoreCollision(col.gameObject.GetComponent<CharacterController>(), GetComponent<CapsuleCollider>());
-        }
-
-        if (col.gameObject.GetComponent<Enemy>() || col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
-        {
-            player.transform.position = transform.position;
-            Destroy(transform.gameObject);
+            if (col.gameObject.GetComponent<Enemy>() || col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
+            {
+                var position = transform.position;
+                if (position.y < 0)
+                {
+                    position.y = 0;
+                }
+                player.transform.position = position;
+                Destroy(transform.gameObject);
+            }
+            else if (!col.gameObject.GetComponent<Player>())
+            {
+                broken = true;
+            }
         }
     }
 
