@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
+using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -72,15 +70,15 @@ public class PlayerAction : MonoBehaviour
         position.y -= 0.1f;
 
         Quaternion rotation = Camera.main.transform.rotation;
+        rotation *= Quaternion.Euler(0, 180, 0);
 
         var thrownStar = Instantiate(ThrowingStarPrefab, position, rotation, shuriken.transform);
-        thrownStar.transform.name = "First Star";
-
         thrownStar.GetComponent<Rigidbody>().velocity = direction * 50f;
 
         if (firstThrownStar == null)
         {
             firstThrownStar = thrownStar;
+            thrownStar.transform.name = "First Star";
         }
         else
         {
@@ -89,9 +87,10 @@ public class PlayerAction : MonoBehaviour
                 Destroy(seccondThrownStar.gameObject);
             }
             seccondThrownStar = thrownStar;
-            seccondThrownStar.GetComponent<ThrowingStar>().setFirstInfo(firstThrownStar.transform.position);
+            thrownStar.transform.name = "Seccond Star";
+            seccondThrownStar.GetComponent<ThrowingStar>().setFirstStarInfo(firstThrownStar);
         }
-        
-        
+
+
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HitDetection : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class HitDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.GetComponent<Enemy>())
+        if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
         {
             player.UpdateHealth(-20);
         }

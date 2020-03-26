@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
-using Object = System.Object;
+﻿using UnityEngine;
 
 // This script moves the character controller forward
 // and sideways based on the arrow keys.
@@ -12,14 +9,14 @@ using Object = System.Object;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    
+
 
     public Transform groundCheck;
     public LayerMask groundMask;
 
     [SerializeField] private float speed = 12f;
     [SerializeField] private float gravity = -20f;
-    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float groundDistance = 0.6f;
     private bool isGrounded;
 

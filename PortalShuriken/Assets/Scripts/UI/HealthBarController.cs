@@ -8,7 +8,7 @@ public class HealthBarController : MonoBehaviour
     public Image health;
 
     private UnityEvent healthUpdateEvent;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class HealthBarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnEnable()
