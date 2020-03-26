@@ -70,7 +70,6 @@ public class PlayerAction : MonoBehaviour
         position.y -= 0.1f;
 
         Quaternion rotation = Camera.main.transform.rotation;
-        rotation *= Quaternion.Euler(0, 180, 0);
 
         var thrownStar = Instantiate(ThrowingStarPrefab, position, rotation, shuriken.transform);
         thrownStar.GetComponent<Rigidbody>().velocity = direction * 50f;

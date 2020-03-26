@@ -471,8 +471,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 0.1, z: 10}
+  m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!64 &566571213
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   groundCheck: {fileID: 184279069}
   groundMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 4864
   speed: 12
   gravity: -20
   jumpHeight: 3

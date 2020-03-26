@@ -4,6 +4,7 @@ using System.Linq;
 public class ThrowingStar : MonoBehaviour
 {
     private bool isFirst = true;
+    private bool isStuck = false;
     private GameObject firstStar;
 
     void FixedUpdate()
@@ -11,19 +12,20 @@ public class ThrowingStar : MonoBehaviour
         RaycastHit hit;
         float distance = .5f;
 
-        if (Physics.Raycast(transform.position, transform.forward * -1, out hit, distance))
+        if (!isStuck && Physics.Raycast(transform.position, transform.forward, out hit, distance))
         {
-            if (hit.collider.gameObject.transform.parent != null && !hit.collider.gameObject.transform.parent.GetComponent<Player>())
+            if (!(hit.collider.gameObject.transform.parent != null && hit.collider.gameObject.transform.parent.GetComponent<Player>()))
             {
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 transform.position = hit.point;
+                transform.rotation = Quaternion.LookRotation(hit.normal);
+                isStuck = true;
             }
         }
     }
 
     void OnCollisionEnter(Collision col)
     {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         if (!isFirst)
         {
             if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
