@@ -483,9 +483,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &566571214
 MeshRenderer:
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e347ad748b7c04eb686e5955cffc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KunaiPrefab: {fileID: 754964026694015952, guid: b342a6ecbb48f4941ab351e578e7b7dc,
+  KunaiPrefab: {fileID: 5584236075631052193, guid: b342a6ecbb48f4941ab351e578e7b7dc,
     type: 3}
   ThrowingStarPrefab: {fileID: 2344198271214610609, guid: ccfc71c60198f424babac4b62f005b98,
     type: 3}
