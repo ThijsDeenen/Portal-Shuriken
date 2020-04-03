@@ -11,6 +11,7 @@ public class WeaponWheel : MonoBehaviour
     private Animator anim;
     private KeyCode[] keys;
     private string pressedKey;
+    private bool isOpen;
     
     void Start()
     {
@@ -51,14 +52,17 @@ public class WeaponWheel : MonoBehaviour
                 {
                     CloseWeaponWheel();
                 }
-                keyCounter = 0;
             }
         }
     }
 
     public void OpenWeaponWheel(string keyInput)
     {
-        anim.SetTrigger("OpenWheel");
+        if (!isOpen)
+        {
+            anim.SetTrigger("OpenWheel");
+            isOpen = true;
+        }
         if (keyInput != "Tab")
         {
             ChangeWeapon(int.Parse(keyInput));
@@ -68,6 +72,7 @@ public class WeaponWheel : MonoBehaviour
     public void CloseWeaponWheel()
     {
         anim.SetTrigger("CloseWheel");
+        isOpen = false;
     }
     public void ChangeWeapon(int number)
     {
