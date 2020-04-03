@@ -16,7 +16,7 @@ public class WeaponWheel : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Tab };
+        keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Tab };
     }
 
     void Update()
