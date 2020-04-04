@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 2019304765}
-  mouseSensitivity: 10
+  mouseSensitivity: 8
 --- !u!1 &1109699212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +1910,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4864
-  speed: 12
+  speed: 10
   gravity: -20
   jumpHeight: 3
   groundDistance: 0.6
@@ -2086,6 +2086,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2547025514866682330, guid: eb1100af70303fc45826f3cb464ea38a,
+        type: 3}
+      propertyPath: patrolPositions.Array.data[0]
+      value: 
+      objectReference: {fileID: 891615784}
+    - target: {fileID: 2547025514866682330, guid: eb1100af70303fc45826f3cb464ea38a,
+        type: 3}
+      propertyPath: patrolPositions.Array.data[1]
+      value: 
+      objectReference: {fileID: 1910656915}
+    - target: {fileID: 2547025514866682330, guid: eb1100af70303fc45826f3cb464ea38a,
+        type: 3}
+      propertyPath: patrolPositions.Array.data[2]
+      value: 
+      objectReference: {fileID: 696135282}
+    - target: {fileID: 2547025514866682330, guid: eb1100af70303fc45826f3cb464ea38a,
+        type: 3}
+      propertyPath: patrolPositions.Array.data[3]
+      value: 
+      objectReference: {fileID: 329640064}
+    - target: {fileID: 2547025514866682330, guid: eb1100af70303fc45826f3cb464ea38a,
+        type: 3}
+      propertyPath: patrolPositions.Array.data[4]
+      value: 
+      objectReference: {fileID: 1620189345}
     - target: {fileID: 2547025514866682331, guid: eb1100af70303fc45826f3cb464ea38a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2141,30 +2166,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2547025514866682341, guid: eb1100af70303fc45826f3cb464ea38a,
-        type: 3}
-      propertyPath: patrolPositions.Array.data[0]
-      value: 
-      objectReference: {fileID: 891615784}
-    - target: {fileID: 2547025514866682341, guid: eb1100af70303fc45826f3cb464ea38a,
-        type: 3}
-      propertyPath: patrolPositions.Array.data[1]
-      value: 
-      objectReference: {fileID: 1910656915}
-    - target: {fileID: 2547025514866682341, guid: eb1100af70303fc45826f3cb464ea38a,
-        type: 3}
-      propertyPath: patrolPositions.Array.data[2]
-      value: 
-      objectReference: {fileID: 696135282}
-    - target: {fileID: 2547025514866682341, guid: eb1100af70303fc45826f3cb464ea38a,
-        type: 3}
-      propertyPath: patrolPositions.Array.data[3]
-      value: 
-      objectReference: {fileID: 329640064}
-    - target: {fileID: 2547025514866682341, guid: eb1100af70303fc45826f3cb464ea38a,
-        type: 3}
-      propertyPath: patrolPositions.Array.data[4]
-      value: 
-      objectReference: {fileID: 1620189345}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb1100af70303fc45826f3cb464ea38a, type: 3}
