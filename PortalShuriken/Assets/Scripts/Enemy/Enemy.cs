@@ -30,7 +30,8 @@ public class Enemy : MonoBehaviour
     {
         if (fieldOfView.visibleTargets.Count > 0)
         {
-            awareness += awarenessIncreaseSpeed * Time.deltaTime;
+            var distance = Vector3.Distance(fieldOfView.visibleTargets[0].position, transform.position);
+            awareness += awarenessIncreaseSpeed * (fieldOfView.viewRadius / distance) * Time.deltaTime;
             lastPlayerPos = fieldOfView.visibleTargets[0].position;
         }
         else

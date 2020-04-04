@@ -39,7 +39,7 @@ public class PatrolBehaviour : StateMachineBehaviour
 
     private void DoPatrol()
     {
-        if (navMeshAgent.enabled && IsEnemyNearDestination())
+        if (navMeshAgent.enabled && IsEnemyAtDestination())
         {
             navMeshAgent.destination = patrolPositions[currentPatrolIndex].position;
             currentPatrolIndex++;
@@ -50,7 +50,7 @@ public class PatrolBehaviour : StateMachineBehaviour
         }
     }
 
-    private bool IsEnemyNearDestination()
+    private bool IsEnemyAtDestination()
     {
         if (navMeshAgent.pathPending) return false;
         if (!(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)) return false;

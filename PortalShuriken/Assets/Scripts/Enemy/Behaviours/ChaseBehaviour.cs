@@ -45,7 +45,7 @@ public class ChaseBehaviour : StateMachineBehaviour
         }
     }
 
-    private bool IsEnemyNearDestination()
+    private bool IsEnemyAtDestination()
     {
         if (navMeshAgent.pathPending) return false;
         if (!(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)) return false;

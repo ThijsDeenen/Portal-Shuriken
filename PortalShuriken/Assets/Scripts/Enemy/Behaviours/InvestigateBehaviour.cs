@@ -42,9 +42,14 @@ public class InvestigateBehaviour : StateMachineBehaviour
         {
             navMeshAgent.destination = enemy.lastPlayerPos;
         }
+
+        if(IsEnemyAtDestination())
+        {
+            //check around the area for the player
+        }
     }
 
-    private bool IsEnemyNearDestination()
+    private bool IsEnemyAtDestination()
     {
         if (navMeshAgent.pathPending) return false;
         if (!(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)) return false;
