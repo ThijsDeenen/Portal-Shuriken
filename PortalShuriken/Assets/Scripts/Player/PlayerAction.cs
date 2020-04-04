@@ -87,7 +87,7 @@ public class PlayerAction : MonoBehaviour
             }
             seccondThrownStar = thrownStar;
             thrownStar.transform.name = "Seccond Star";
-            seccondThrownStar.GetComponent<ThrowingStar>().setFirstStarInfo(firstThrownStar);
+            seccondThrownStar.GetComponent<ThrowingStar>().SetFirstStarInfo(firstThrownStar);
         }
 
 

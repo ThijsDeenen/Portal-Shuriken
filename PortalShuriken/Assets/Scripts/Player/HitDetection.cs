@@ -2,11 +2,11 @@
 
 public class HitDetection : MonoBehaviour
 {
-    private Player player;
+    public Player player;
 
     void Start()
     {
-        player = transform.parent.GetComponent<Player>();
+
     }
 
     void OnTriggerEnter(Collider col)

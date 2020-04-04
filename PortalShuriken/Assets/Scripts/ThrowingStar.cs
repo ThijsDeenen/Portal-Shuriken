@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Linq;
+using UnityEngine.AI;
 
 public class ThrowingStar : MonoBehaviour
 {
+    private float ejectSpeed = 8f;
     private bool isFirst = true;
     private bool isStuck = false;
     private GameObject firstStar;
@@ -28,23 +30,24 @@ public class ThrowingStar : MonoBehaviour
     {
         if (!isFirst)
         {
-            if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
+            if (col.gameObject.transform.GetComponent<Enemy>())
             {
-                var newPos = firstStar.transform.position;
+                var newPos = firstStar.transform.position + firstStar.transform.forward;
                 var newRotation = firstStar.transform.rotation;
                 newRotation = Quaternion.Euler(new Vector3(0f, newRotation.eulerAngles.y, 0f));
 
-                col.gameObject.transform.parent.position = newPos;
-                col.gameObject.transform.parent.rotation = newRotation;
-                col.gameObject.transform.parent.GetComponent<CharacterController>().Move(firstStar.transform.forward * .5f);
-                col.gameObject.transform.parent.GetComponent<EnemyMovement>().addVelocity(firstStar.transform.forward * 15f);
+                col.gameObject.GetComponent<EnemyMovement>().StopPatrol();
+                col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                col.gameObject.transform.position = newPos;
+                col.gameObject.transform.rotation = newRotation;
+                col.gameObject.GetComponent<Rigidbody>().velocity = firstStar.transform.forward * ejectSpeed;
                 Destroy(transform.gameObject);
             }
         }
 
     }
 
-    public void setFirstStarInfo(GameObject firstStar)
+    public void SetFirstStarInfo(GameObject firstStar)
     {
         this.firstStar = firstStar;
         isFirst = false;

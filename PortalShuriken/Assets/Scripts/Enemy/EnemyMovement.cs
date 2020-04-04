@@ -1,76 +1,114 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private CharacterController controller;
+    [SerializeField] private float margin = 0.1f;
+    [SerializeField] private float chaseDelay = 0.1f;
 
-    public Transform groundCheck;
-    public LayerMask groundMask;
+    public FieldOfView vieldOfView;
+    public List<Transform> patrolPositions;
 
-    [SerializeField] private float speed = 12f;
-    [SerializeField] private float gravity = -20f;
-    [SerializeField] private float friction = 20f;
-    [SerializeField] private float jumpHeight = 3f;
-    [SerializeField] private float groundDistance = 0.6f;
-    private bool isGrounded;
+    private NavMeshAgent navMeshAgent;
+    private Rigidbody rigidbody;
 
-    private Vector3 velocity;
-
-    void FixedUpdate()
-    {
-        RaycastHit hit;
-        float distance = .25f;
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distance))
-        {
-            if (!hit.collider.gameObject.GetComponent<Enemy>() && hit.collider.gameObject.transform.parent != null && !hit.collider.gameObject.transform.parent.GetComponent<Enemy>())
-            {
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            }
-        }
-    }
+    private int currentPatrolIndex = 0;
+    private bool isOnPatrol = false;
+    private bool isChasingPlayer = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        rigidbody = GetComponent<Rigidbody>();
+        StartPatrol();
     }
 
     private void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0)
+        if (!isChasingPlayer && vieldOfView.visibleTargets.Count > 0)
         {
-            velocity.y = 0f;
-        }
-        if (!isGrounded)
-        {
-            velocity.y += gravity * Time.deltaTime;
+            StartPlayerChase();
         }
 
-        if (velocity.x > 0)
+        if (!isChasingPlayer && !isOnPatrol)
         {
-            velocity.x -= friction * Time.deltaTime;
+            StartPatrol();
         }
-        if (velocity.x < 0)
-        {
-            velocity.x += friction * Time.deltaTime;
-        }
-
-        if (velocity.z > 0)
-        {
-            velocity.z -= friction * Time.deltaTime;
-        }
-        if (velocity.z < 0)
-        {
-            velocity.z += friction * Time.deltaTime;
-        }
-
-        controller.Move(velocity * Time.deltaTime);
     }
 
-    public void addVelocity(Vector3 velocity)
+    public void StartPatrol()
     {
-        this.velocity += velocity;
+        if (isOnPatrol) return;
+        navMeshAgent.enabled = true;
+        navMeshAgent.isStopped = false;
+        isOnPatrol = true;
+        StartCoroutine(DoPatrol());
+    }
+
+    public void StopPatrol()
+    {
+        if (!isOnPatrol) return;
+        isOnPatrol = false;
+        StopCoroutine(DoPatrol());
+        navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
+    }
+
+    public void StartPlayerChase()
+    {
+        if (isChasingPlayer) return;
+        if (isOnPatrol)
+        {
+            StopPatrol();
+        }
+        navMeshAgent.enabled = true;
+        navMeshAgent.isStopped = false;
+        isChasingPlayer = true;
+        StartCoroutine(ChasePlayer());
+    }
+
+    public void StopPlayerChase()
+    {
+        if (!isChasingPlayer) return;
+        isChasingPlayer = false;
+        StopCoroutine(ChasePlayer());
+        navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
+    }
+
+    private IEnumerator DoPatrol()
+    {
+        while (isOnPatrol)
+        {
+            navMeshAgent.destination = patrolPositions[currentPatrolIndex].position;
+            currentPatrolIndex++;
+            yield return new WaitUntil(IsEnemyNearDestination);
+            if (currentPatrolIndex > (patrolPositions.Count - 1))
+            {
+                currentPatrolIndex = 0;
+            }
+        }
+    }
+
+    private IEnumerator ChasePlayer()
+    {
+        while (vieldOfView.visibleTargets.Count > 0)
+        {
+            navMeshAgent.destination = vieldOfView.visibleTargets[0].position;
+            yield return new WaitForSeconds(chaseDelay);
+        }
+
+        StopPlayerChase();
+    }
+
+    private bool IsEnemyNearDestination()
+    {
+        if (!isOnPatrol) return false;
+        if (navMeshAgent.pathPending) return false;
+        if (!(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)) return false;
+        return !navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f;
     }
 }

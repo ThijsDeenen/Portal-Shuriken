@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int health = 100;
-    public UnityEvent healthUpdateEvent = new UnityEvent();
+    [HideInInspector] public UnityEvent healthUpdateEvent = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
