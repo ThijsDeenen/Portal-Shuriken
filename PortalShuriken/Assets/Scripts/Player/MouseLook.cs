@@ -4,7 +4,7 @@ public class MouseLook : MonoBehaviour
 {
     public Transform playerBody;
 
-    [SerializeField] private float mouseSensitivity = 10f;
+    public float mouseSensitivity = 8f;
     private float xRotation = 0f;
 
     // Start is called before the first frame update

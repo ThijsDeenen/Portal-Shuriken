@@ -36,7 +36,7 @@ public class ThrowingStar : MonoBehaviour
                 var newRotation = firstStar.transform.rotation;
                 newRotation = Quaternion.Euler(new Vector3(0f, newRotation.eulerAngles.y, 0f));
 
-                col.gameObject.GetComponent<EnemyMovement>().StopPatrol();
+                col.gameObject.GetComponent<Enemy>().StunEnemy();
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 col.gameObject.transform.position = newPos;
                 col.gameObject.transform.rotation = newRotation;
