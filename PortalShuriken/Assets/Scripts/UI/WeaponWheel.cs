@@ -5,7 +5,7 @@ using Unity;
 
 public class WeaponWheel : MonoBehaviour
 {
-    private int currentWeapon;
+    public int currentWeapon;
     public GameObject[] weapons;
     private bool wheelIsOpened = false;
     private Animator anim;
@@ -47,7 +47,6 @@ public class WeaponWheel : MonoBehaviour
                         keyCounter += 1;
                     }
                 }
-                Debug.Log(keyCounter);
                 if (keyCounter == keys.Length)
                 {
                     CloseWeaponWheel();

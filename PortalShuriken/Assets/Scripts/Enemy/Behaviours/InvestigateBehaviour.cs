@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class InvestigateBehaviour : StateMachineBehaviour
 {
     public float speed = 5f;
+    public float viewRadius = 60f;
 
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
@@ -22,6 +23,7 @@ public class InvestigateBehaviour : StateMachineBehaviour
         navMeshAgent.isStopped = false;
 
         navMeshAgent.speed = speed;
+        fieldOfView.viewRadius = viewRadius;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -43,7 +45,7 @@ public class InvestigateBehaviour : StateMachineBehaviour
             navMeshAgent.destination = enemy.lastPlayerPos;
         }
 
-        if(IsEnemyAtDestination())
+        if(navMeshAgent.enabled && IsEnemyAtDestination())
         {
             //check around the area for the player
         }

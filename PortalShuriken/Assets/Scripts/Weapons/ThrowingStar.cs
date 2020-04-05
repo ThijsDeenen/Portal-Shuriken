@@ -49,8 +49,11 @@ public class ThrowingStar : MonoBehaviour
 
     public void SetFirstStarInfo(GameObject firstStar)
     {
-        this.firstStar = firstStar;
-        isFirst = false;
+        if (firstStar != null)
+        {
+            this.firstStar = firstStar;
+            isFirst = false;
+        }
         GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
     }
 }

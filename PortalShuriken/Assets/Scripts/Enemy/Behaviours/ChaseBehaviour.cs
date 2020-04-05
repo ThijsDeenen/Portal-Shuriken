@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class ChaseBehaviour : StateMachineBehaviour
 {
     public float speed = 8f;
+    public float viewRadius = 80f;
 
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
@@ -23,6 +24,7 @@ public class ChaseBehaviour : StateMachineBehaviour
         navMeshAgent.isStopped = false;
 
         navMeshAgent.speed = speed;
+        fieldOfView.viewRadius = viewRadius;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

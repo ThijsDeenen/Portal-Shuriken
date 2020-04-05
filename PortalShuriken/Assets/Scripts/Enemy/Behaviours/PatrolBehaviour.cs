@@ -5,10 +5,12 @@ using UnityEngine.AI;
 public class PatrolBehaviour : StateMachineBehaviour
 {
     public float speed = 5f;
+    public float viewRadius = 40f;
 
     private Enemy enemy;
     private List<Transform> patrolPositions;
     private NavMeshAgent navMeshAgent;
+    private FieldOfView fieldOfView;
 
     private int currentPatrolIndex = 0;
 
@@ -18,11 +20,14 @@ public class PatrolBehaviour : StateMachineBehaviour
         enemy = animator.GetComponent<Enemy>();
         patrolPositions = enemy.patrolPositions;
         navMeshAgent = enemy.navMeshAgent;
+        fieldOfView = enemy.fieldOfView;
 
         navMeshAgent.enabled = true;
         navMeshAgent.isStopped = false;
 
         navMeshAgent.speed = speed;
+        fieldOfView.viewRadius = viewRadius;
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

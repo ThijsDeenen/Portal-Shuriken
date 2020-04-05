@@ -342,6 +342,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d2d1a0581fc254abff96e15cc27459, type: 3}
+--- !u!114 &299481661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2033519920140494698, guid: a7d2d1a0581fc254abff96e15cc27459,
+    type: 3}
+  m_PrefabInstance: {fileID: 299481660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9363edc033a8620458f887b4c20ecf34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &303258118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,6 +2064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e347ad748b7c04eb686e5955cffc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponWheel: {fileID: 299481661}
   KunaiPrefab: {fileID: 5584236075631052193, guid: b342a6ecbb48f4941ab351e578e7b7dc,
     type: 3}
   ThrowingStarPrefab: {fileID: 2344198271214610609, guid: ccfc71c60198f424babac4b62f005b98,
@@ -2291,6 +2304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547025514988003900, guid: eb1100af70303fc45826f3cb464ea38a,
+        type: 3}
+      propertyPath: viewRadius
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb1100af70303fc45826f3cb464ea38a, type: 3}

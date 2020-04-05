@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
+    public WeaponWheel weaponWheel;
     public GameObject KunaiPrefab;
     public GameObject ThrowingStarPrefab;
     public GameObject shuriken;
@@ -24,12 +25,40 @@ public class PlayerAction : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ThrowKunai();
+            switch (weaponWheel.currentWeapon)
+            {
+                case 0:
+                    SwingKatana();
+                    break;
+                case 1:
+                    ThrowKunai();
+                    break;
+                case 2:
+                    ThrowSecondStar();
+                    break;
+            }
+            
         }
         if (Input.GetMouseButtonDown(1))
         {
-            ThrowStar();
+            switch (weaponWheel.currentWeapon)
+            {
+                case 0:
+
+                    break;
+                case 1:
+                    
+                    break;
+                case 2:
+                    ThrowFirstStar();
+                    break;
+            }
         }
+    }
+
+    private void SwingKatana()
+    {
+
     }
 
     private void ThrowKunai()
@@ -61,7 +90,34 @@ public class PlayerAction : MonoBehaviour
         kunai.GetComponent<Kunai>().SetPlayer(transform.gameObject);
     }
 
-    private void ThrowStar()
+    private void ThrowFirstStar()
+    {
+        var thrownStar = ThrowStar();
+
+        if (firstThrownStar != null)
+        {
+            Destroy(firstThrownStar);
+        }
+
+        firstThrownStar = thrownStar;
+        thrownStar.transform.name = "First Star";
+    }
+
+    private void ThrowSecondStar()
+    {
+        var thrownStar = ThrowStar();
+
+        if (seccondThrownStar != null)
+        {
+            Destroy(seccondThrownStar.gameObject);
+        }
+
+        seccondThrownStar = thrownStar;
+        thrownStar.transform.name = "Second Star";
+        seccondThrownStar.GetComponent<ThrowingStar>().SetFirstStarInfo(firstThrownStar);
+    }
+
+    private GameObject ThrowStar()
     {
         Vector3 direction = Camera.main.transform.forward;
 
@@ -74,22 +130,6 @@ public class PlayerAction : MonoBehaviour
         var thrownStar = Instantiate(ThrowingStarPrefab, position, rotation, shuriken.transform);
         thrownStar.GetComponent<Rigidbody>().velocity = direction * 50f;
 
-        if (firstThrownStar == null)
-        {
-            firstThrownStar = thrownStar;
-            thrownStar.transform.name = "First Star";
-        }
-        else
-        {
-            if (seccondThrownStar != null)
-            {
-                Destroy(seccondThrownStar.gameObject);
-            }
-            seccondThrownStar = thrownStar;
-            thrownStar.transform.name = "Seccond Star";
-            seccondThrownStar.GetComponent<ThrowingStar>().SetFirstStarInfo(firstThrownStar);
-        }
-
-
+        return thrownStar;
     }
 }
