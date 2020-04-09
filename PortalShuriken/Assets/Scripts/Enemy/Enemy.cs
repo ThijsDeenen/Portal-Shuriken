@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float awarenessIncreaseSpeed = 30;
     public float awarenessDecreaseSpeed = 20;
     public Vector3 lastPlayerPos;
+    public float distanceToPlayer = 1000;
 
     public FieldOfView fieldOfView;
     public NavMeshAgent navMeshAgent;
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
     public List<Transform> patrolPositions;
 
     private Animator enemyAI;
+    private GameObject player;
 
     public 
 
@@ -33,14 +35,24 @@ public class Enemy : MonoBehaviour
             var distance = Vector3.Distance(fieldOfView.visibleTargets[0].position, transform.position);
             awareness += awarenessIncreaseSpeed * (fieldOfView.viewRadius / distance) * Time.deltaTime;
             lastPlayerPos = fieldOfView.visibleTargets[0].position;
+            if (player == null)
+            {
+                player = fieldOfView.visibleTargets[0].gameObject;
+            }
         }
         else
         {
             awareness -= awarenessDecreaseSpeed * Time.deltaTime;
         }
 
+        if (player != null)
+        {
+            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        }
+
         awareness = Mathf.Clamp(awareness, 0, 100);
         enemyAI.SetFloat("awareness", awareness);
+        enemyAI.SetFloat("distance to player", distanceToPlayer);
 
         var color = Color.Lerp(Color.green, Color.red, awareness / 100);
         color.a = .5f;

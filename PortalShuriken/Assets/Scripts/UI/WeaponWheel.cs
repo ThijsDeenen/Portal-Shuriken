@@ -7,16 +7,18 @@ public class WeaponWheel : MonoBehaviour
 {
     public int currentWeapon;
     public GameObject[] weapons;
-    private bool wheelIsOpened = false;
-    private Animator anim;
+    private Animator wheelAnim;
+    public Animator katanaAnim;
     private KeyCode[] keys;
     private string pressedKey;
     private bool isOpen;
+    private bool katanaDrawn;
     
     void Start()
     {
-        anim = GetComponent<Animator>();
+        wheelAnim = GetComponent<Animator>();
         keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Tab };
+        DrawKatana();
     }
 
     void Update()
@@ -55,11 +57,11 @@ public class WeaponWheel : MonoBehaviour
         }
     }
 
-    public void OpenWeaponWheel(string keyInput)
+    private void OpenWeaponWheel(string keyInput)
     {
         if (!isOpen)
         {
-            anim.SetTrigger("OpenWheel");
+            wheelAnim.SetTrigger("OpenWheel");
             isOpen = true;
         }
         if (keyInput != "Tab")
@@ -68,15 +70,41 @@ public class WeaponWheel : MonoBehaviour
         }
     }
 
-    public void CloseWeaponWheel()
+    private void CloseWeaponWheel()
     {
-        anim.SetTrigger("CloseWheel");
+        wheelAnim.SetTrigger("CloseWheel");
         isOpen = false;
     }
-    public void ChangeWeapon(int number)
+    private void ChangeWeapon(int number)
     {
         weapons[currentWeapon].GetComponent<WeaponWheelOption>().Disable();
-        weapons[number - 1].GetComponent<WeaponWheelOption>().Enable();
         currentWeapon = number - 1;
+        weapons[currentWeapon].GetComponent<WeaponWheelOption>().Enable();
+        if (currentWeapon == 0)
+        {
+            DrawKatana();
+        }
+        else
+        {
+            PutAwayKatana();
+        }
+    }
+
+    private void DrawKatana()
+    {
+        if (!katanaDrawn)
+        {
+            katanaAnim.SetTrigger("Draw Katana");
+            katanaDrawn = true;
+        }
+    }
+
+    private void PutAwayKatana()
+    {
+        if (katanaDrawn)
+        {
+            katanaAnim.SetTrigger("Put Away Katana");
+            katanaDrawn = false;
+        }
     }
 }
