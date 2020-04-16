@@ -11,7 +11,8 @@ public class InvestigateBehaviour : StateMachineBehaviour
     private FieldOfView fieldOfView;
     private Katana katana;
 
-    private int currentPatrolIndex = 0;
+    private Vector3 lastPlayerPos;
+    private float rotationAmount = 40f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,7 +34,17 @@ public class InvestigateBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GoInvestigate();
+        if (navMeshAgent.enabled)
+        {
+            if (lastPlayerPos != enemy.lastPlayerPos)
+            {
+                Investigate();
+            }
+            if (IsEnemyAtDestination())
+            {
+                LookAround();
+            }
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -42,17 +53,23 @@ public class InvestigateBehaviour : StateMachineBehaviour
 
     }
 
-    private void GoInvestigate()
+    private void Investigate()
     {
-        if (navMeshAgent.enabled)
-        {
-            navMeshAgent.destination = enemy.lastPlayerPos;
-        }
+        lastPlayerPos = enemy.lastPlayerPos;
+        navMeshAgent.destination = lastPlayerPos;
+    }
 
-        if(navMeshAgent.enabled && IsEnemyAtDestination())
+    private void LookAround()
+    {
+        var enemyRotation = enemy.transform.rotation.eulerAngles.y;
+        var newRotation = enemyRotation + rotationAmount;
+        if (newRotation > 360) { newRotation -= 360; }
+        if (newRotation < 0) { newRotation += 360; }
+        if ((rotationAmount > 0 && enemyRotation > newRotation) || (rotationAmount < 0 && enemyRotation < newRotation))
         {
-            //check around the area for the player
+            rotationAmount *= -1;
         }
+        enemy.transform.Rotate(new Vector3(0, rotationAmount, 0) * Time.deltaTime);
     }
 
     private bool IsEnemyAtDestination()

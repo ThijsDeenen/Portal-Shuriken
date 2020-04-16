@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         UpdateAwereness();
         UpdateAI();
 
@@ -61,13 +60,15 @@ public class Enemy : MonoBehaviour
     {
         if (fieldOfView.visibleTargets.Count > 0)
         {
-            var distance = Vector3.Distance(fieldOfView.visibleTargets[0].position, transform.position);
-            awareness += awarenessIncreaseSpeed * (fieldOfView.viewRadius / distance) * Time.deltaTime;
-            lastPlayerPos = fieldOfView.visibleTargets[0].position;
             if (player == null)
             {
                 player = fieldOfView.visibleTargets[0].gameObject;
             }
+
+            var distance = Vector3.Distance(fieldOfView.visibleTargets[0].position, transform.position);
+            awareness += awarenessIncreaseSpeed * (fieldOfView.viewRadius / distance) * Time.deltaTime;
+            
+            lastPlayerPos = player.transform.position;
             distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
         }
         else if (enemyAI.GetCurrentAnimatorStateInfo(0).IsName("Chase") && chaseDetection.visibleTargets.Count > 0)

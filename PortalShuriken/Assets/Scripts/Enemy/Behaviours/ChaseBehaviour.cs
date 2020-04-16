@@ -9,10 +9,11 @@ public class ChaseBehaviour : StateMachineBehaviour
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
     private FieldOfView fieldOfView;
-    private FieldOfView chaseDetection;
     private Katana katana;
 
     private int currentPatrolIndex = 0;
+    private Vector3 lastPlayerPos;
+    private float rotationAmount = 40f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,7 +21,6 @@ public class ChaseBehaviour : StateMachineBehaviour
         enemy = animator.GetComponent<Enemy>();
         navMeshAgent = enemy.navMeshAgent;
         fieldOfView = enemy.fieldOfView;
-        chaseDetection = enemy.chaseDetection;
         katana = enemy.katana;
 
         navMeshAgent.enabled = true;
@@ -35,7 +35,17 @@ public class ChaseBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        ChasePlayer();
+        if (navMeshAgent.enabled)
+        {
+            if (lastPlayerPos != enemy.lastPlayerPos)
+            {
+                ChasePlayer();
+            }
+            if (IsEnemyAtDestination())
+            {
+                LookAround();
+            }
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -46,10 +56,21 @@ public class ChaseBehaviour : StateMachineBehaviour
 
     private void ChasePlayer()
     {
-        if (navMeshAgent.enabled)
+        lastPlayerPos = enemy.lastPlayerPos;
+        navMeshAgent.destination = lastPlayerPos;
+    }
+
+    private void LookAround()
+    {
+        var enemyRotation = enemy.transform.rotation.eulerAngles.y;
+        var newRotation = enemyRotation + rotationAmount;
+        if (newRotation > 360) { newRotation -= 360; }
+        if (newRotation < 0) { newRotation += 360; }
+        if ((rotationAmount > 0 && enemyRotation > newRotation) || (rotationAmount < 0 && enemyRotation < newRotation))
         {
-            navMeshAgent.destination = enemy.lastPlayerPos;
+            rotationAmount *= -1;
         }
+        enemy.transform.Rotate(new Vector3(0, rotationAmount, 0) * Time.deltaTime);
     }
 
     private bool IsEnemyAtDestination()
