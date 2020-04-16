@@ -9,6 +9,7 @@ public class InvestigateBehaviour : StateMachineBehaviour
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
     private FieldOfView fieldOfView;
+    private Katana katana;
 
     private int currentPatrolIndex = 0;
 
@@ -18,12 +19,15 @@ public class InvestigateBehaviour : StateMachineBehaviour
         enemy = animator.GetComponent<Enemy>();
         navMeshAgent = enemy.navMeshAgent;
         fieldOfView = enemy.fieldOfView;
+        katana = enemy.katana;
 
         navMeshAgent.enabled = true;
         navMeshAgent.isStopped = false;
 
         navMeshAgent.speed = speed;
         fieldOfView.viewRadius = viewRadius;
+
+        katana.PutAway();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

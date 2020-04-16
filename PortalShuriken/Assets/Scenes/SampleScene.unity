@@ -314,7 +314,7 @@ PrefabInstance:
         type: 3}
       propertyPath: katanaAnim
       value: 
-      objectReference: {fileID: 1997890421}
+      objectReference: {fileID: 385029403}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d2d1a0581fc254abff96e15cc27459, type: 3}
 --- !u!114 &299481661 stripped
@@ -452,6 +452,12 @@ Transform:
   m_Father: {fileID: 1592488023}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &385029403 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4562593149600068643, guid: 60b3ec20e53c82b4da1767f045d3ea3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7812328349684943051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &407279756
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9368ae4c7dd3ed6409738d2b1f6fb762, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa6e1fa3a5df1c043ab313812c8575c0, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1170,11 +1176,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9368ae4c7dd3ed6409738d2b1f6fb762, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa6e1fa3a5df1c043ab313812c8575c0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1607,12 +1613,6 @@ Transform:
   m_Father: {fileID: 1592488023}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1997890421 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7812328350910393278, guid: 60b3ec20e53c82b4da1767f045d3ea3f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7812328349684943051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2019304768 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7812328351165803915, guid: 60b3ec20e53c82b4da1767f045d3ea3f,
@@ -1826,16 +1826,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2547025514988003900, guid: eb1100af70303fc45826f3cb464ea38a,
-        type: 3}
-      propertyPath: viewRadius
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2547025514988003900, guid: eb1100af70303fc45826f3cb464ea38a,
-        type: 3}
-      propertyPath: viewAngle
-      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb1100af70303fc45826f3cb464ea38a, type: 3}

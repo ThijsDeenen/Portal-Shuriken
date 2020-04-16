@@ -11,9 +11,10 @@ public class Enemy : MonoBehaviour
     public Vector3 lastPlayerPos;
     public float distanceToPlayer = 1000;
 
+    [HideInInspector] public NavMeshAgent navMeshAgent;
+    [HideInInspector] public Rigidbody rigidbody;
+    public Katana katana;
     public FieldOfView fieldOfView;
-    public NavMeshAgent navMeshAgent;
-    public Rigidbody rigidbody;
     public List<Transform> patrolPositions;
 
     private Animator enemyAI;
@@ -25,6 +26,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyAI = GetComponent<Animator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -58,7 +61,7 @@ public class Enemy : MonoBehaviour
         color.a = .5f;
         fieldOfView.viewMeshFilter.GetComponent<Renderer>().material.color = color;
 
-        if (transform.position.y < -100)
+        if (transform.position.y < -100 || health < 0)
         {
             Destroy(transform.gameObject);
         }
@@ -73,5 +76,10 @@ public class Enemy : MonoBehaviour
             navMeshAgent.isStopped = true;
             navMeshAgent.enabled = false;
         }
+    }
+
+    public void UpdateHealth(int change)
+    {
+        health += change;
     }
 }

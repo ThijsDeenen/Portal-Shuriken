@@ -9,6 +9,7 @@ public class ChaseBehaviour : StateMachineBehaviour
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
     private FieldOfView fieldOfView;
+    private Katana katana;
 
     private int currentPatrolIndex = 0;
 
@@ -18,12 +19,15 @@ public class ChaseBehaviour : StateMachineBehaviour
         enemy = animator.GetComponent<Enemy>();
         navMeshAgent = enemy.navMeshAgent;
         fieldOfView = enemy.fieldOfView;
+        katana = enemy.katana;
 
         navMeshAgent.enabled = true;
         navMeshAgent.isStopped = false;
 
         navMeshAgent.speed = speed;
         fieldOfView.viewRadius = viewRadius;
+
+        katana.Draw();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

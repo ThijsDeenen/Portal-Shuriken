@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     public WeaponWheel weaponWheel;
+    public Katana katana;
     public GameObject KunaiPrefab;
     public GameObject ThrowingStarPrefab;
     public GameObject shuriken;
-    public Animator katanaAnim;
 
     private List<GameObject> thrownKunais = new List<GameObject>();
     private GameObject firstThrownStar;
@@ -59,7 +59,7 @@ public class PlayerAction : MonoBehaviour
 
     private void SwingKatana()
     {
-        katanaAnim.SetTrigger("Swing Katana");
+        katana.Swing();
     }
 
     private void ThrowKunai()
