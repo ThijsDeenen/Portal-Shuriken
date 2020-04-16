@@ -9,6 +9,7 @@ public class ChaseBehaviour : StateMachineBehaviour
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
     private FieldOfView fieldOfView;
+    private FieldOfView chaseDetection;
     private Katana katana;
 
     private int currentPatrolIndex = 0;
@@ -19,6 +20,7 @@ public class ChaseBehaviour : StateMachineBehaviour
         enemy = animator.GetComponent<Enemy>();
         navMeshAgent = enemy.navMeshAgent;
         fieldOfView = enemy.fieldOfView;
+        chaseDetection = enemy.chaseDetection;
         katana = enemy.katana;
 
         navMeshAgent.enabled = true;

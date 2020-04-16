@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     public bool isTarget = false;
     public int health = 100;
     public float awareness = 0f;
-    public float awarenessIncreaseSpeed = 30;
-    public float awarenessDecreaseSpeed = 20;
+    public float awarenessIncreaseSpeed = 20;
+    public float awarenessDecreaseSpeed = 5;
     public Vector3 lastPlayerPos;
     public float distanceToPlayer = 1000;
     public int scareThreshold = 50;
@@ -18,9 +18,10 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public NavMeshAgent navMeshAgent;
     [HideInInspector] public Rigidbody rigidbody;
+    [HideInInspector] public GameObject player;
     public Katana katana;
-    public GameObject player;
     public FieldOfView fieldOfView;
+    public FieldOfView chaseDetection;
     public List<Transform> patrolPositions;
 
     private Animator enemyAI;
@@ -36,6 +37,28 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        UpdateAwereness();
+        UpdateAI();
+
+        if (health < scareThreshold && !isScared && !isBrave)
+        {
+            scareCheck();
+        }    
+
+        if (transform.position.y < -100 || health < 0)
+        {
+            Destroy(transform.gameObject);
+        }
+    }
+
+    public void UpdateHealth(int change)
+    {
+        health += change;
+    }
+
+    private void UpdateAwereness()
+    {
         if (fieldOfView.visibleTargets.Count > 0)
         {
             var distance = Vector3.Distance(fieldOfView.visibleTargets[0].position, transform.position);
@@ -45,42 +68,44 @@ public class Enemy : MonoBehaviour
             {
                 player = fieldOfView.visibleTargets[0].gameObject;
             }
+            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        }
+        else if (enemyAI.GetCurrentAnimatorStateInfo(0).IsName("Chase") && chaseDetection.visibleTargets.Count > 0)
+        {
+            lastPlayerPos = chaseDetection.visibleTargets[0].position;
+            distanceToPlayer = 1000f;
         }
         else
         {
             awareness -= awarenessDecreaseSpeed * Time.deltaTime;
-        }
-
-        if (player != null)
-        {
-            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+            distanceToPlayer = 1000f;
         }
 
         awareness = Mathf.Clamp(awareness, 0, 100);
+    }    
+
+
+    private void UpdateAI()
+    {
         enemyAI.SetFloat("awareness", awareness);
         enemyAI.SetFloat("distance to player", distanceToPlayer);
 
         var color = Color.Lerp(Color.green, Color.red, awareness / 100);
         color.a = .5f;
         fieldOfView.viewMeshFilter.GetComponent<Renderer>().material.color = color;
+    }
 
-        if (health < scareThreshold && !isScared && !isBrave)
+    private void scareCheck()
+    {
+        if (UnityEngine.Random.Range(1, 101) < (30 + 45 * Convert.ToInt32(isTarget)))
         {
-            if (UnityEngine.Random.Range(1,101) < (30 + 45 * Convert.ToInt32(isTarget)))
-            {
-                isScared = true;
-            }
-            else
-            {
-                isBrave = true;
-            }
-            enemyAI.SetBool("scared", isScared);
-        }    
-
-        if (transform.position.y < -100 || health < 0)
-        {
-            Destroy(transform.gameObject);
+            isScared = true;
         }
+        else
+        {
+            isBrave = true;
+        }
+        enemyAI.SetBool("scared", isScared);
     }
 
     public void StunEnemy()
@@ -92,10 +117,5 @@ public class Enemy : MonoBehaviour
             navMeshAgent.isStopped = true;
             navMeshAgent.enabled = false;
         }
-    }
-
-    public void UpdateHealth(int change)
-    {
-        health += change;
     }
 }
