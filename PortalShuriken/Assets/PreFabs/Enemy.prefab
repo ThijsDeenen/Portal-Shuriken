@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2547025514866682329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 11.019662, y: 0.19370538, z: 35.36421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2547025516242868700}
@@ -53,6 +53,7 @@ MonoBehaviour:
   awarenessIncreaseSpeed: 20
   awarenessDecreaseSpeed: 10
   lastPlayerPos: {x: 0, y: 0, z: 0}
+  distanceToPlayer: 1000
   fieldOfView: {fileID: 2547025514988003900}
   navMeshAgent: {fileID: 2547025514866682343}
   rigidbody: {fileID: 754151520}

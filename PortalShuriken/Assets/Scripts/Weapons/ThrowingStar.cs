@@ -8,6 +8,17 @@ public class ThrowingStar : MonoBehaviour
     private bool isFirst = true;
     private bool isStuck = false;
     private GameObject firstStar;
+    public GameObject teleportParticles;
+    private Vector3 newEnemyPos;
+    private GameObject teleportingEnemy;
+    private Quaternion enemyRotation;
+    private GameObject throwingStar;
+    private GameObject particles;
+
+    private void Start()
+    {
+        throwingStar = this.gameObject;
+    }
 
     void FixedUpdate()
     {
@@ -36,15 +47,26 @@ public class ThrowingStar : MonoBehaviour
                 var newRotation = firstStar.transform.rotation;
                 newRotation = Quaternion.Euler(new Vector3(0f, newRotation.eulerAngles.y, 0f));
 
-                col.gameObject.GetComponent<Enemy>().StunEnemy();
-                col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                col.gameObject.transform.position = newPos;
-                col.gameObject.transform.rotation = newRotation;
-                col.gameObject.GetComponent<Rigidbody>().velocity = firstStar.transform.forward * ejectSpeed;
-                Destroy(transform.gameObject);
+                teleportingEnemy = col.gameObject;
+                particles = Instantiate(teleportParticles, col.gameObject.transform.position, Quaternion.identity);
+                particles.GetComponent<TeleportParticles>().AssignPositions(transform.position, newPos, throwingStar);
+                teleportingEnemy.SetActive(false);
+                newEnemyPos = newPos;
+                enemyRotation = newRotation;
             }
         }
+    }
 
+    public void TeleportEnemy()
+    {
+        teleportingEnemy.SetActive(true);
+        teleportingEnemy.GetComponent<Enemy>().StunEnemy();
+        teleportingEnemy.GetComponent<Rigidbody>().isKinematic = false;
+        teleportingEnemy.transform.position = newEnemyPos;
+        teleportingEnemy.transform.rotation = enemyRotation;
+        teleportingEnemy.GetComponent<Rigidbody>().velocity = firstStar.transform.forward * ejectSpeed;
+        Destroy(particles);
+        Destroy(transform.gameObject);
     }
 
     public void SetFirstStarInfo(GameObject firstStar)
