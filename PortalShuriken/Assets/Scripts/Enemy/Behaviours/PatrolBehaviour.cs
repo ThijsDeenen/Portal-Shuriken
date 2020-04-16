@@ -27,7 +27,6 @@ public class PatrolBehaviour : StateMachineBehaviour
 
         navMeshAgent.speed = speed;
         fieldOfView.viewRadius = viewRadius;
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -7,6 +7,7 @@ public class AttackBehaviour : StateMachineBehaviour
 
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
+    private Katana katana;
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -14,14 +15,16 @@ public class AttackBehaviour : StateMachineBehaviour
     {
         enemy = animator.GetComponent<Enemy>();
         navMeshAgent = enemy.navMeshAgent;
+        katana = enemy.katana;
 
         navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        katana.Swing();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
