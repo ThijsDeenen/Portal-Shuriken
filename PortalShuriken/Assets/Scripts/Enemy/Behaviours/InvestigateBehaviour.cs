@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class InvestigateBehaviour : StateMachineBehaviour
 {
-    public float speed = 5f;
+    public float speed = 6f;
     public float viewRadius = 60f;
 
     private Enemy enemy;

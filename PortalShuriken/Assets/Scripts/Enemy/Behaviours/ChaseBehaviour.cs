@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class ChaseBehaviour : StateMachineBehaviour
 {
-    public float speed = 8f;
+    public float speed = 10f;
     public float viewRadius = 80f;
 
     private Enemy enemy;

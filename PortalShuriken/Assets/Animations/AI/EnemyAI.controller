@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e304c77b03a2944afb7db33f32c007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
   viewRadius: 80
 --- !u!1101 &-6485749355471022883
 AnimatorStateTransition:
@@ -201,10 +201,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: awareness
-    m_EventTreshold: 20
-  - m_ConditionMode: 2
-    m_ConditionEvent: scared
-    m_EventTreshold: 0
+    m_EventTreshold: 10
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4923521802897778252}
   m_Solo: 0
@@ -227,9 +224,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: health
-    m_EventTreshold: 10
   - m_ConditionMode: 1
     m_ConditionEvent: scared
     m_EventTreshold: 0
@@ -557,9 +551,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: health
-    m_EventTreshold: 10
   - m_ConditionMode: 1
     m_ConditionEvent: scared
     m_EventTreshold: 0
