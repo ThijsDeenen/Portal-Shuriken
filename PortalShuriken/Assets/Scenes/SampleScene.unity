@@ -314,7 +314,7 @@ PrefabInstance:
         type: 3}
       propertyPath: katanaAnim
       value: 
-      objectReference: {fileID: 385029403}
+      objectReference: {fileID: 1431779697}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d2d1a0581fc254abff96e15cc27459, type: 3}
 --- !u!114 &299481661 stripped
@@ -452,12 +452,6 @@ Transform:
   m_Father: {fileID: 1592488023}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &385029403 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4562593149600068643, guid: 60b3ec20e53c82b4da1767f045d3ea3f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7812328349684943051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &407279756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1371,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387923288}
   m_CullTransparentMesh: 0
+--- !u!95 &1431779697 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1350900692819039043, guid: 60b3ec20e53c82b4da1767f045d3ea3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7812328349684943051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1510846612
 GameObject:
   m_ObjectHideFlags: 0
