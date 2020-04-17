@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Linq;
-using UnityEngine.AI;
 
 public class ThrowingStar : MonoBehaviour
 {
@@ -67,7 +65,6 @@ public class ThrowingStar : MonoBehaviour
     {
         enemy.SetActive(true);
         enemy.GetComponent<Enemy>().StunEnemy();
-        enemy.GetComponent<Rigidbody>().isKinematic = false;
         enemy.transform.position = newEnemyPos;
         enemy.transform.rotation = enemyRotation;
         enemy.GetComponent<Rigidbody>().velocity = firstStar.transform.forward * ejectSpeed;

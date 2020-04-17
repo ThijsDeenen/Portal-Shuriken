@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (velocity.y > lastFallVelocity)
         {
-            GetComponent<Player>().UpdateHealth(-(int) Mathf.Pow(lastFallVelocity / 5f, 2));
+            GetComponent<Player>().UpdateHealth(-(int)Mathf.Pow(lastFallVelocity / 5f, 2));
         }
         lastFallVelocity = velocity.y;
     }

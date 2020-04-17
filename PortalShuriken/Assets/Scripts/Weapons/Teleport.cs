@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
@@ -46,7 +44,7 @@ public class Teleport : MonoBehaviour
             objectsToDisable[i].gameObject.SetActive(false);
         }
 
-        cam.GetComponent<MouseLook>().enabled = false; 
+        cam.GetComponent<MouseLook>().enabled = false;
 
         foreach (Behaviour item in behavioursToDisable)
         {

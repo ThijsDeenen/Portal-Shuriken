@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity;
+﻿using UnityEngine;
 
 public class WeaponWheel : MonoBehaviour
 {
@@ -13,7 +10,7 @@ public class WeaponWheel : MonoBehaviour
     private string pressedKey;
     private bool isOpen;
     private bool katanaDrawn;
-    
+
     void Start()
     {
         wheelAnim = GetComponent<Animator>();
@@ -23,7 +20,8 @@ public class WeaponWheel : MonoBehaviour
 
     void Update()
     {
-        foreach (KeyCode key in keys){
+        foreach (KeyCode key in keys)
+        {
             if (Input.GetKeyDown(key))
             {
                 if (Input.inputString != "")
