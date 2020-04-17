@@ -83,4 +83,14 @@ public class Katana : MonoBehaviour
             katanaAnim.SetTrigger("Swing Katana");
         }
     }
+
+    public void EnableTrail()
+    {
+        transform.GetChild(4).gameObject.SetActive(true);
+    }
+
+    public void DisableTrail()
+    {
+        transform.GetChild(4).gameObject.SetActive(false);
+    }
 }

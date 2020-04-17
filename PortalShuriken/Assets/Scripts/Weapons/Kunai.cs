@@ -3,8 +3,13 @@
 public class Kunai : MonoBehaviour
 {
     private GameObject player;
+    private Teleport teleport;
     private bool broken = false;
 
+    private void Start()
+    {
+        teleport = player.GetComponent<Teleport>();
+    }
     void OnCollisionEnter(Collision col)
     {
         if (!broken)
@@ -12,11 +17,8 @@ public class Kunai : MonoBehaviour
             if (col.gameObject.GetComponent<Enemy>() || col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
             {
                 var position = transform.position;
-                if (position.y < 0)
-                {
-                    position.y = 0;
-                }
-                player.transform.position = position;
+                teleport.PrepareToTeleport(transform.position);
+                //player.transform.position = position;
                 Destroy(transform.gameObject);
             }
             else if (!col.gameObject.GetComponent<Player>())
