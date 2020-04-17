@@ -34,7 +34,7 @@ Transform:
   - {fileID: 2547025516242868700}
   - {fileID: 2547025514988003889}
   - {fileID: 7053655536681817157}
-  - {fileID: 4973261871877508395}
+  - {fileID: 8195903847757160332}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 2547025514866682343}
   rigidbody: {fileID: 754151520}
   player: {fileID: 0}
-  katana: {fileID: 35509398870255162}
+  katana: {fileID: 3803017132129334429}
   fieldOfView: {fileID: 2547025514988003900}
   chaseDetection: {fileID: 8998987009658515772}
   patrolPositions:
@@ -494,7 +494,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
   viewMeshFilter: {fileID: 999296106633645618}
---- !u!1001 &5779984296512987116
+--- !u!1001 &7246152620185505099
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -563,17 +563,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ad16d5df875bb042b1a9513ec99de6f, type: 3}
---- !u!4 &4973261871877508395 stripped
+--- !u!4 &8195903847757160332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1527338519737848519, guid: 1ad16d5df875bb042b1a9513ec99de6f,
     type: 3}
-  m_PrefabInstance: {fileID: 5779984296512987116}
+  m_PrefabInstance: {fileID: 7246152620185505099}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &35509398870255162 stripped
+--- !u!114 &3803017132129334429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5785021623407442390, guid: 1ad16d5df875bb042b1a9513ec99de6f,
     type: 3}
-  m_PrefabInstance: {fileID: 5779984296512987116}
+  m_PrefabInstance: {fileID: 7246152620185505099}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
