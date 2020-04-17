@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     public List<Transform> patrolPositions;
 
     private Animator enemyAI;
+    private float lastFallVelocity = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,11 @@ public class Enemy : MonoBehaviour
         if (transform.position.y < -100 || health < 0)
         {
             Destroy(transform.gameObject);
+        }
+
+        if (rigidbody.velocity.y < -10 || lastFallVelocity < 0)
+        {
+            CalculateFallDamage();
         }
     }
 
@@ -118,5 +124,14 @@ public class Enemy : MonoBehaviour
             navMeshAgent.isStopped = true;
             navMeshAgent.enabled = false;
         }
+    }
+
+    private void CalculateFallDamage()
+    {
+        if (rigidbody.velocity.y > lastFallVelocity)
+        {
+            UpdateHealth((int)lastFallVelocity * 4);
+        }
+        lastFallVelocity = rigidbody.velocity.y;
     }
 }

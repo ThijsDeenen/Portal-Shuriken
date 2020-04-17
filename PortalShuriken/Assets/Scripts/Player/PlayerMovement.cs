@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private Vector3 velocity;
+    private float lastFallVelocity = 0;
 
     private void Start()
     {
@@ -50,5 +51,19 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
+
+        if (velocity.y < -20 || lastFallVelocity < -0)
+        {
+            CalculateFallDamage();
+        }
+    }
+
+    private void CalculateFallDamage()
+    {
+        if (velocity.y > lastFallVelocity)
+        {
+            GetComponent<Player>().UpdateHealth(-(int) Mathf.Pow(lastFallVelocity / 5f, 2));
+        }
+        lastFallVelocity = velocity.y;
     }
 }
