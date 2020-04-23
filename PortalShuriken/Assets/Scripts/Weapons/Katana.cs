@@ -92,4 +92,9 @@ public class Katana : MonoBehaviour
     {
         transform.GetChild(4).gameObject.SetActive(false);
     }
+
+    public void KillEnemy()
+    {
+        transform.parent.GetComponent<Enemy>().Die();
+    }
 }

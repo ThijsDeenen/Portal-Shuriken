@@ -19,7 +19,6 @@ public class TargetCount : MonoBehaviour
             }
         }
         sceneController = gameObject.GetComponent<SceneController>();
-        Debug.Log(targetsInGame);
     }
 
     public void KillTarget()

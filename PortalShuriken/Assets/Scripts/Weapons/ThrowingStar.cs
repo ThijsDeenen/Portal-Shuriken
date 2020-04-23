@@ -5,6 +5,7 @@ public class ThrowingStar : MonoBehaviour
     private float ejectSpeed = 8f;
     private bool isFirst = true;
     private bool isStuck = false;
+    private bool hasParticles = true;
     private GameObject firstStar;
     public GameObject teleportParticles;
     private Vector3 newEnemyPos;
@@ -13,6 +14,7 @@ public class ThrowingStar : MonoBehaviour
     private GameObject particles;
     public Animator anim;
     public Renderer[] shurikenColor;
+    public GameObject targetParticles;
 
     private void Start()
     {
@@ -32,6 +34,7 @@ public class ThrowingStar : MonoBehaviour
                 transform.position = hit.point;
                 transform.rotation = Quaternion.LookRotation(hit.normal);
                 isStuck = true;
+                if (hasParticles) targetParticles.SetActive(true);
             }
         }
     }
@@ -85,6 +88,7 @@ public class ThrowingStar : MonoBehaviour
         for (int i = 0; i < shurikenColor.Length; i++)
         {
             shurikenColor[i].material.SetColor("_Color", Color.blue);
+            hasParticles = false;
         }
         //GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
     }
