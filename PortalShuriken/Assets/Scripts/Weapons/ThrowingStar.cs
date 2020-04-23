@@ -12,6 +12,7 @@ public class ThrowingStar : MonoBehaviour
     private Quaternion enemyRotation;
     private GameObject particles;
     public Animator anim;
+    public Renderer[] shurikenColor;
 
     private void Start()
     {
@@ -81,6 +82,10 @@ public class ThrowingStar : MonoBehaviour
             this.firstStar = firstStar;
             isFirst = false;
         }
-        GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+        for (int i = 0; i < shurikenColor.Length; i++)
+        {
+            shurikenColor[i].material.SetColor("_Color", Color.blue);
+        }
+        //GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
     }
 }

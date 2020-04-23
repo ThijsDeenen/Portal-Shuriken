@@ -126,6 +126,13 @@ MonoBehaviour:
   teleportParticles: {fileID: 2835078463925602723, guid: 458228fb2800c9343b05c2e8ec2c1d86,
     type: 3}
   anim: {fileID: 3348860957085845537}
+  shurikenColor:
+  - {fileID: 9108267781162765497}
+  - {fileID: 7291914696302881142}
+  - {fileID: 4965473515316737588}
+  - {fileID: 2321724303794846868}
+  - {fileID: 8718573049394530945}
+  - {fileID: 4126479734040437036}
 --- !u!95 &3348860957085845537
 Animator:
   serializedVersion: 3
@@ -223,6 +230,42 @@ GameObject:
 --- !u!4 &8757494454755399572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: ed3f7b4b1d7ed3447a712ddaedbb2152,
+    type: 3}
+  m_PrefabInstance: {fileID: 4391689135740402830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9108267781162765497 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4425495500041998281, guid: ed3f7b4b1d7ed3447a712ddaedbb2152,
+    type: 3}
+  m_PrefabInstance: {fileID: 4391689135740402830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7291914696302881142 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6467309561977689592, guid: ed3f7b4b1d7ed3447a712ddaedbb2152,
+    type: 3}
+  m_PrefabInstance: {fileID: 4391689135740402830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4965473515316737588 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8654385604302195386, guid: ed3f7b4b1d7ed3447a712ddaedbb2152,
+    type: 3}
+  m_PrefabInstance: {fileID: 4391689135740402830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2321724303794846868 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7148899310046117862, guid: ed3f7b4b1d7ed3447a712ddaedbb2152,
+    type: 3}
+  m_PrefabInstance: {fileID: 4391689135740402830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8718573049394530945 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4319798671319550449, guid: ed3f7b4b1d7ed3447a712ddaedbb2152,
+    type: 3}
+  m_PrefabInstance: {fileID: 4391689135740402830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4126479734040437036 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 411614773720620450, guid: ed3f7b4b1d7ed3447a712ddaedbb2152,
     type: 3}
   m_PrefabInstance: {fileID: 4391689135740402830}
   m_PrefabAsset: {fileID: 0}
