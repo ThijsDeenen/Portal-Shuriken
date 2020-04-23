@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if (velocity.y < -20 || lastFallVelocity < -0)
+        if (velocity.y < -20 && !isGrounded || lastFallVelocity < -0)
         {
             CalculateFallDamage();
         }
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
     private void GroundCheck()
     {
         Ray ray = new Ray(groundCheck.position, Vector3.down);
-        isGrounded = Physics.SphereCast(ray, groundDistance, groundDistance, groundMask);
+        isGrounded = Physics.SphereCast(ray, groundDistance, 1f, groundMask);
     }
 
     private void CalculateFallDamage()

@@ -36,6 +36,10 @@ public class Enemy : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
         targetCount = gameObject.transform.parent.GetComponent<TargetCount>();
+        if(isScared)
+        {
+            enemyAI.SetBool("scared", isScared);
+        }
     }
 
     // Update is called once per frame

@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e304c77b03a2944afb7db33f32c007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   viewRadius: 80
 --- !u!1101 &-6485749355471022883
 AnimatorStateTransition:
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba9d07ac30b220498bb31b158c947a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   viewRadius: 60
 --- !u!1101 &2467814516670498775
 AnimatorStateTransition:
@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd7e25e4aad7ac428ebed235549b4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
   viewRadius: 80
 --- !u!1102 &8826638428591226759
 AnimatorState:

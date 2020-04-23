@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 67b315cbc79bac14b81f52d2b26d58d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Situation1.unity
     guid: dd8ea2f0285e3a3488a6c4f6ccd03c4e
   - enabled: 1
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 0a4536f06428cc94293935ce0fe42f74
+  - enabled: 1
+    path: Assets/Scenes/Situation2.unity
+    guid: dca7e3c37963fd94e8f2acd521a9dfdd
   m_configObjects: {}
