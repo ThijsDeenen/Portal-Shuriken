@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 10f;
     public float gravity = -30f;
     public float jumpHeight = 2f;
+    public float fallDamageFactor = 6f;
     public float groundDistance = 0.6f;
 
     private bool isGrounded;
@@ -119,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (velocity.y > lastFallVelocity)
         {
-            GetComponent<Player>().UpdateHealth(-(int)Mathf.Pow(lastFallVelocity / 5f, 2));
+            GetComponent<Player>().UpdateHealth(-(int)Mathf.Pow(lastFallVelocity / fallDamageFactor, 2));
         }
         lastFallVelocity = velocity.y;
     }
