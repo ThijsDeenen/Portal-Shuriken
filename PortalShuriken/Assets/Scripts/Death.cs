@@ -18,6 +18,5 @@ public class Death : MonoBehaviour
         yield return new WaitForSeconds(1);
         gameOverUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 }

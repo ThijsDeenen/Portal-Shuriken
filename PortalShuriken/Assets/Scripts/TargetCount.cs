@@ -27,6 +27,7 @@ public class TargetCount : MonoBehaviour
         targetsInGame.RemoveAt(targetsInGame.Count - 1);
         if (targetsInGame.Count <= 0)
         {
+            Cursor.lockState = CursorLockMode.None;
             sceneController.GoToScene("WinScreen");
         }
     }

@@ -11,6 +11,7 @@ public class ThrowingStar : MonoBehaviour
     private GameObject enemy;
     private Quaternion enemyRotation;
     private GameObject particles;
+    public Animator anim;
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class ThrowingStar : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        anim.SetTrigger("Stick");
         if (col.gameObject.transform.GetComponent<Enemy>())
         {
             enemy = col.gameObject;
