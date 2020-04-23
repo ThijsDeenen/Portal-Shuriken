@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
             ScareCheck();
         }
 
-        if (transform.position.y < -100 || health < 0)
+        if (transform.position.y < -100 || health <= 0)
         {
             if (isTarget)
             {
@@ -64,9 +64,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(int change)
+    public void UpdateHealth(bool playerDamage, int change)
     {
         health += change;
+
+        if (playerDamage && enemyAI.GetCurrentAnimatorStateInfo(0).IsName("Patrol"))
+        {
+            health = 0;
+        }
     }
 
     private void UpdateAwareness()
@@ -126,7 +131,7 @@ public class Enemy : MonoBehaviour
     {
         if (rigidbody.velocity.y > lastFallVelocity)
         {
-            UpdateHealth((int)lastFallVelocity * 4);
+            UpdateHealth(false, (int)lastFallVelocity * 4);
         }
         lastFallVelocity = rigidbody.velocity.y;
     }

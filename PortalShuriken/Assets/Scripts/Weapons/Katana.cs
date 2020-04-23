@@ -38,7 +38,7 @@ public class Katana : MonoBehaviour
                     return;
                 }
             }
-            col.transform.parent.GetComponent<Enemy>().UpdateHealth(-swingDamage);
+            col.transform.parent.GetComponent<Enemy>().UpdateHealth(true, -swingDamage);
             hitEnemies.Add(col.transform.parent.gameObject);
         }
         else if (col.GetComponent<Player>() && transform.parent.GetComponent<Enemy>())
