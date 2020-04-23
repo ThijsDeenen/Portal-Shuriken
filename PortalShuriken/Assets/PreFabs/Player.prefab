@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 7812328351165804017}
   - component: {fileID: 7812328351165804016}
   - component: {fileID: 7812328351165804023}
+  - component: {fileID: 136753186}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -479,6 +480,20 @@ MonoBehaviour:
   ThrowingStarPrefab: {fileID: 2344198271214610609, guid: ccfc71c60198f424babac4b62f005b98,
     type: 3}
   shuriken: {fileID: 0}
+--- !u!114 &136753186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7812328351165804018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2476816e0b31d864eba1ca40d00c4f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportSpeed: 100
+  rotationSpeed: 10
 --- !u!1001 &4825566876931828370
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,9 +16,7 @@ public class Kunai : MonoBehaviour
         {
             if (col.gameObject.GetComponent<Enemy>() || col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Enemy>())
             {
-                var position = transform.position;
                 teleport.PrepareToTeleport(transform.position);
-                //player.transform.position = position;
                 Destroy(transform.gameObject);
             }
             else if (!col.gameObject.GetComponent<Player>())
