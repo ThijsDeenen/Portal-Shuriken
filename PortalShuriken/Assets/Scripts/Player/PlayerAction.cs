@@ -13,7 +13,7 @@ public class PlayerAction : MonoBehaviour
     private List<GameObject> thrownKunais = new List<GameObject>();
     private GameObject firstThrownStar;
     private GameObject seccondThrownStar;
-    
+
     private int kunaiCount;
 
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class PlayerAction : MonoBehaviour
                     ThrowSecondStar();
                     break;
             }
-            
+
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -48,7 +48,7 @@ public class PlayerAction : MonoBehaviour
 
                     break;
                 case 1:
-                    
+
                     break;
                 case 2:
                     ThrowFirstStar();

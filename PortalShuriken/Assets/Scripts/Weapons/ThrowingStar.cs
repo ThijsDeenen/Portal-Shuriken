@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Linq;
-using UnityEngine.AI;
 
 public class ThrowingStar : MonoBehaviour
 {
@@ -10,14 +8,13 @@ public class ThrowingStar : MonoBehaviour
     private GameObject firstStar;
     public GameObject teleportParticles;
     private Vector3 newEnemyPos;
-    private GameObject teleportingEnemy;
+    private GameObject enemy;
     private Quaternion enemyRotation;
-    private GameObject throwingStar;
     private GameObject particles;
 
     private void Start()
     {
-        throwingStar = this.gameObject;
+
     }
 
     void FixedUpdate()
@@ -39,32 +36,38 @@ public class ThrowingStar : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (!isFirst)
+        if (col.gameObject.transform.GetComponent<Enemy>())
         {
-            if (col.gameObject.transform.GetComponent<Enemy>())
+            enemy = col.gameObject;
+
+            if (!isFirst)
             {
+                GetComponent<MeshRenderer>().enabled = false;
                 var newPos = firstStar.transform.position + firstStar.transform.forward;
                 var newRotation = firstStar.transform.rotation;
                 newRotation = Quaternion.Euler(new Vector3(0f, newRotation.eulerAngles.y, 0f));
 
-                teleportingEnemy = col.gameObject;
                 particles = Instantiate(teleportParticles, col.gameObject.transform.position, Quaternion.identity);
-                particles.GetComponent<TeleportParticles>().AssignPositions(transform.position, newPos, throwingStar);
-                teleportingEnemy.SetActive(false);
+                particles.GetComponent<TeleportParticles>().AssignPositions(transform.position, newPos, gameObject);
+                enemy.SetActive(false);
                 newEnemyPos = newPos;
                 enemyRotation = newRotation;
+            }
+            else
+            {
+                transform.parent = enemy.transform;
+                GetComponent<Collider>().enabled = false;
             }
         }
     }
 
     public void TeleportEnemy()
     {
-        teleportingEnemy.SetActive(true);
-        teleportingEnemy.GetComponent<Enemy>().StunEnemy();
-        teleportingEnemy.GetComponent<Rigidbody>().isKinematic = false;
-        teleportingEnemy.transform.position = newEnemyPos;
-        teleportingEnemy.transform.rotation = enemyRotation;
-        teleportingEnemy.GetComponent<Rigidbody>().velocity = firstStar.transform.forward * ejectSpeed;
+        enemy.SetActive(true);
+        enemy.GetComponent<Enemy>().StunEnemy();
+        enemy.transform.position = newEnemyPos;
+        enemy.transform.rotation = enemyRotation;
+        enemy.GetComponent<Rigidbody>().velocity = firstStar.transform.forward * ejectSpeed;
         Destroy(particles);
         Destroy(transform.gameObject);
     }

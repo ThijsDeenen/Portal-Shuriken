@@ -1231,8 +1231,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4864
-  speed: 10
-  gravity: -20
+  crouchSpeed: 4
+  walkSpeed: 7
+  runSpeed: 10
+  gravity: -30
   jumpHeight: 3
   groundDistance: 0.6
 --- !u!143 &1095986016
