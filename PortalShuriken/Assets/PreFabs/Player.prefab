@@ -118,7 +118,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7812328349930491316}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -452,8 +452,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4864
-  speed: 10
-  gravity: -20
+  crouchSpeed: 4
+  walkSpeed: 7
+  runSpeed: 10
+  gravity: -30
   jumpHeight: 3
   groundDistance: 0.6
 --- !u!114 &7812328351165804023
