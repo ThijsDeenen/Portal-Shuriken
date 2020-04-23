@@ -23,9 +23,11 @@ public class WeaponWheel : MonoBehaviour
 
     void Update()
     {
+        //Check if any necessary keys are pressed
         foreach (KeyCode key in keys){
             if (Input.GetKeyDown(key))
             {
+                //open weapon wheel using pressed key
                 if (Input.inputString != "")
                 {
                     pressedKey = Input.inputString;
@@ -37,10 +39,12 @@ public class WeaponWheel : MonoBehaviour
                 OpenWeaponWheel(pressedKey);
             }
         }
+        //Check if any necessary keys are released
         foreach (KeyCode key in keys)
         {
             if (Input.GetKeyUp(key))
             {
+                //Check if no other necessary keys are pressed
                 int keyCounter = 0;
                 for (int i = 0; i < keys.Length; i++)
                 {
@@ -49,6 +53,7 @@ public class WeaponWheel : MonoBehaviour
                         keyCounter += 1;
                     }
                 }
+                //If no necessary keys are pressed, close the weapon wheel
                 if (keyCounter == keys.Length)
                 {
                     CloseWeaponWheel();
@@ -59,11 +64,13 @@ public class WeaponWheel : MonoBehaviour
 
     private void OpenWeaponWheel(string keyInput)
     {
+        //Play non-looped open animation (keeping it in the open position) if weapon wheel isn't opened yet
         if (!isOpen)
         {
             wheelAnim.SetTrigger("OpenWheel");
             isOpen = true;
         }
+        //Change weapon to corresponding number
         if (keyInput != "Tab")
         {
             ChangeWeapon(int.Parse(keyInput));
@@ -77,9 +84,11 @@ public class WeaponWheel : MonoBehaviour
     }
     private void ChangeWeapon(int number)
     {
+        //disable last chosen weapon and enable new chosen weapon
         weapons[currentWeapon].GetComponent<WeaponWheelOption>().Disable();
         currentWeapon = number - 1;
         weapons[currentWeapon].GetComponent<WeaponWheelOption>().Enable();
+
         if (currentWeapon == 0)
         {
             DrawKatana();

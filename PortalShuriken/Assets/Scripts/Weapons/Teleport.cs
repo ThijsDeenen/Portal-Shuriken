@@ -41,13 +41,14 @@ public class Teleport : MonoBehaviour
 
     public void PrepareToTeleport(Vector3 kunai)
     {
+        //disable all the player's child objects except the first (which is the camera)
         for (int i = 2; i < objectsToDisable.Length - 1; i++)
         {
             objectsToDisable[i].gameObject.SetActive(false);
         }
-
+        //disable the ability to control the camera with the mouse
         cam.GetComponent<MouseLook>().enabled = false; 
-
+        //disable all behaviours in Player gameObject
         foreach (Behaviour item in behavioursToDisable)
         {
             if (item != GetComponent(typeof(Teleport)))

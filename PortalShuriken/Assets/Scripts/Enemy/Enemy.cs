@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     public List<Transform> patrolPositions;
 
     private Animator enemyAI;
+    private TargetCount targetCount;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
         enemyAI = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
+        targetCount = gameObject.transform.parent.GetComponent<TargetCount>();
     }
 
     // Update is called once per frame
@@ -47,6 +49,10 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.y < -100 || health < 0)
         {
+            if (isTarget)
+            {
+                targetCount.KillTarget();
+            }
             Destroy(transform.gameObject);
         }
     }
