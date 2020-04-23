@@ -24,10 +24,12 @@ public class Enemy : MonoBehaviour
     public FieldOfView fieldOfView;
     public FieldOfView chaseDetection;
     public List<Transform> patrolPositions;
+    public Animator anim;
 
     private Animator enemyAI;
     private TargetCount targetCount;
     private float lastFallVelocity = 0;
+    private bool hasDied = false;
 
     // Start is called before the first frame update
     void Start()
@@ -55,11 +57,15 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.y < -100 || health <= 0)
         {
-            if (isTarget)
+            if (!hasDied)
             {
-                targetCount.KillTarget();
+                katana.GetComponent<Animator>().SetTrigger("Die");
+                gameObject.GetComponent<Animator>().enabled = false;
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                fieldOfView.gameObject.SetActive(false);
+                anim.SetTrigger("Die");
+                hasDied = true;
             }
-            Destroy(transform.gameObject);
         }
 
         if (rigidbody.velocity.y < -10 || lastFallVelocity < 0)
@@ -160,5 +166,14 @@ public class Enemy : MonoBehaviour
         enemyAI.SetBool("stunned", false);
         rigidbody.isKinematic = true;
         yield return null;
+    }
+
+    public void Die()
+    {
+        if (isTarget)
+        {
+            targetCount.KillTarget();
+        }
+        Destroy(transform.gameObject);
     }
 }
