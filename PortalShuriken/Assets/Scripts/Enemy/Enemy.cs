@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
             ScareCheck();
         }
 
-        if (transform.position.y < -100 || health <= 0)
+        if (transform.position.y < -1000 || health <= 0)
         {
             if (isTarget)
             {
@@ -123,12 +123,12 @@ public class Enemy : MonoBehaviour
         if (UnityEngine.Random.Range(1, 101) < (30 + 45 * Convert.ToInt32(isTarget)))
         {
             isScared = true;
+            enemyAI.SetBool("scared", isScared);
         }
         else
         {
             isBrave = true;
         }
-        enemyAI.SetBool("scared", isScared);
     }
 
     private void CalculateFallDamage()
@@ -159,6 +159,6 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(5f);
         enemyAI.SetBool("stunned", false);
         rigidbody.isKinematic = true;
-        yield return null;
+        yield break;
     }
 }

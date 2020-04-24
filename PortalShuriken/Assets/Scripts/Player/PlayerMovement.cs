@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 2f;
     public float fallDamageFactor = 6f;
     public float groundDistance = 0.6f;
+    public float groundRadius = 0.6f;
 
     private bool isGrounded;
     private bool isCrouching;
@@ -113,14 +114,15 @@ public class PlayerMovement : MonoBehaviour
     private void GroundCheck()
     {
         Ray ray = new Ray(groundCheck.position, Vector3.down);
-        isGrounded = Physics.SphereCast(ray, groundDistance, 1f, groundMask);
+        isGrounded = Physics.SphereCast(ray, groundRadius, groundDistance, groundMask);
     }
 
     private void CalculateFallDamage()
     {
         if (velocity.y > lastFallVelocity)
         {
-            GetComponent<Player>().UpdateHealth(-(int)Mathf.Pow(lastFallVelocity / fallDamageFactor, 2));
+            var damage = Mathf.Pow(lastFallVelocity / fallDamageFactor, 2);
+            GetComponent<Player>().UpdateHealth(-(int) damage);
         }
         lastFallVelocity = velocity.y;
     }
